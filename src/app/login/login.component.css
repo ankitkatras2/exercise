@@ -1,0 +1,20 @@
+.material-icons.md-48 {
+    font-size: 48px;
+}
+
+.left-pane {
+    background-color: rgb(38 153 251);
+}
+
+mat-form-field,
+.loginBtn {
+    width: 80%;
+}
+
+.card-body {
+    height: 90vh;
+}
+
+.card-body .row.col-lg-12 {
+    height: 100%;
+}

@@ -1,0 +1,28 @@
+<p-button label="Add Car Detail" icon="pi pi-plus" styleClass="p-button-outlined" (click)="addCar()">
+</p-button>
+<app-add-car *ngIf="addModalPopup" [showModal]="addModalPopup" (popupClose)="updateFromChild($event)"></app-add-car>
+<p-table [columns]="cols" [value]="products">
+    <ng-template pTemplate="header" let-columns>
+        <tr>
+            <th *ngFor="let col of columns">
+                {{col.header}}
+            </th>
+        </tr>
+    </ng-template>
+    <!-- <ng-template pTemplate="body" let-rowData let-columns="columns">
+        <tr>
+            <td *ngFor="let col of columns">
+                {{rowData[col.field] | uppercase }}
+            </td>
+
+        </tr>
+    </ng-template> -->
+    <ng-template pTemplate="body" let-product>
+        <tr>
+            <td>{{product.brand}}</td>
+            <td>{{product.year}}</td>
+            <td>{{product.color}}</td>
+            <td>{{product.vin | uppercase}}</td>
+        </tr>
+    </ng-template>
+</p-table>
