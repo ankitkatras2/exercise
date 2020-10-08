@@ -1,6 +1,47 @@
-<p-button label="Add Car Detail" icon="pi pi-plus" styleClass="p-button-outlined" (click)="addCar()">
-</p-button>
-<app-add-car *ngIf="addModalPopup" [showModal]="addModalPopup" (popupClose)="updateFromChild($event)"></app-add-car>
+<!-- <p-button label="Add Car Detail" icon="pi pi-plus" styleClass="p-button-outlined" (click)="addCar()"> -->
+<!-- </p-button> -->
+<!-- <app-add-car *ngIf="addModalPopup" [showModal]="addModalPopup" (popupClose)="updateFromChild($event)"></app-add-car> -->
+<form class="form-horizontal" [formGroup]="addCarForm">
+    <div class="form-container">
+        <div class="row">
+            <div class="row col-lg-10">
+                <div class="col-lg-3">
+                    <mat-form-field appearance="fill" class="col-lg-12">
+                        <mat-label>Enter car brand</mat-label>
+                        <input matInput placeholder="Maruti" formControlName="brand" required>
+                        <mat-error *ngIf="addCarForm.controls['brand'].invalid">Required</mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col-lg-3">
+                    <mat-form-field appearance="fill" class="col-lg-12">
+                        <mat-label>Enter car make year</mat-label>
+                        <input matInput placeholder="2020" formControlName="year" required>
+                        <mat-error *ngIf="addCarForm.controls['year'].invalid">Required(Numbers Only)</mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col-lg-3">
+                    <mat-form-field appearance="fill" class="col-lg-12">
+                        <mat-label>Enter car color</mat-label>
+                        <input matInput placeholder="Black" formControlName="color" required>
+                        <mat-error *ngIf="addCarForm.controls['color'].invalid">Required</mat-error>
+                    </mat-form-field>
+
+                </div>
+                <div class="col-lg-3">
+                    <mat-form-field appearance="fill" class="col-lg-12">
+                        <mat-label>Enter car vin</mat-label>
+                        <input matInput placeholder="agre2" formControlName="vin" required>
+                        <mat-error *ngIf="addCarForm.controls['vin'].invalid">Required</mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="co-lg-2">
+                <button type="button" class="btn btn-primary" (click)="addCar()">Add</button>
+            </div>
+        </div>
+    </div>
+</form>
+
 <p-table [columns]="cols" [value]="products">
     <ng-template pTemplate="header" let-columns>
         <tr>

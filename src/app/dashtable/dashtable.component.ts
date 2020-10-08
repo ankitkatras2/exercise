@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-dashtable',
@@ -6,11 +7,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dashtable.component.css']
 })
 export class DashtableComponent implements OnInit {
-
+  addCarForm: FormGroup;
   products: any = [];
   cols: any[];
   addModalPopup = false;
-  constructor() { }
+  constructor(private fb: FormBuilder) {
+    this.addCarForm = fb.group({
+      'brand': ['', [Validators.required]],
+      'color': ['', [Validators.required]],
+      'year': ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
+      'vin': ['', [Validators.required]]
+    });
+  }
 
   ngOnInit(): void {
     this.products = [
@@ -35,13 +43,14 @@ export class DashtableComponent implements OnInit {
   }
 
   addCar() {
-    this.addModalPopup = true;
+    // this.addModalPopup = true;
+    this.products.push(this.addCarForm.value);
   }
 
   updateFromChild($event) {
     console.log($event);
     this.addModalPopup = false;
-    if($event !== null) {
+    if ($event !== null) {
       this.products.push($event);
     }
   }
